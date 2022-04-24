@@ -8,8 +8,9 @@ export async function onRequest(ctx) {
     let response =  await getTweetJson(tweetId, ctx.env.BEARER_TOKEN)
     if (Object.keys(response).includes('data')){
       let wordle = extractWordle(response)
-      let hash = wordleToBeatHash(wordle)
-      return new Response(`${wordle}\n${hash}`)
+      let bin = wordleToBeatHash(wordle)
+      let hash = parseInt(bin, 2).toString(16)
+      return new Response(`${wordle}<pre>\n${bin}\n${hash}</pre>`)
     } else {
       return new Response("No tweet with wordle found for id ", tweetId)
     }
@@ -31,7 +32,7 @@ function wordleToBeatHash(wordle){
     .replace('🟨', '1')
     .replace('🟩', '1')
     .replace('⬛', '0')
-  return parseInt(binary, 2).toString(16)
+  return binary
 }
 
 function getTweetId(ctx){
