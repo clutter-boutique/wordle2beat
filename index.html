@@ -111,7 +111,7 @@ Inspired by https://www.youtube.com/watch?v=6O_92BTrUcA
     }
 
     function hexToBin(hex) {
-      padded = parseInt(hex, 16).toString(2)
+      padded = parseInt(hex, 16).toString(2).padStart(48)
       unpadded = ""
       for (let f of padded.match(/.{1,8}/g)){
         unpadded += f.substr(0,5)
