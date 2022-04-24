@@ -85,14 +85,7 @@ Inspired by https://www.youtube.com/watch?v=6O_92BTrUcA
     const BPM = 120;
     const TICKS = 5;
     const INTERVAL = 1 / (4 * BPM / (60 * 1000));
-    const BLANK_MATRIX = [
-      0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0
-    ]
+    const EMPTY_BOARD = 000000000000000000000000000000
 
     // sounds originated from http://808.html909.com
     const sounds = [
@@ -111,14 +104,19 @@ Inspired by https://www.youtube.com/watch?v=6O_92BTrUcA
 
     function binToHex(bin) {
       let padded = ""
-      for (let f of bin.match(/.{1,5}/g)){padded = `${padded}${f}000`}
+      for (let f of bin.match(/.{1,5}/g)){
+        padded += f.padEnd(8, "0")
+      }
       return parseInt(padded, 2).toString(16)
     }
 
     function hexToBin(hex) {
       padded = parseInt(hex, 16).toString(2)
       unpadded = ""
-      for (let f of padded.match(/.{1,8}/g)){unpadded = `${unpadded}${f.substr(0,5)}`}
+      for (let f of padded.match(/.{1,8}/g)){
+        unpadded += f.substr(0,5)
+      }
+      console.log("unpadded", unpadded)
       return unpadded
     }
 
@@ -135,7 +133,7 @@ Inspired by https://www.youtube.com/watch?v=6O_92BTrUcA
 
     function restoreState() {
       var hash = window.location.hash;
-      hash = (hash === '') ? binToHex(BLANK_MATRIX.concat('')) : hash.substr(1); // Remove the first char (#...)
+      hash = (hash === '') ? binToHex(EMPTY_BOARD) : hash.substr(1); // Remove the first char (#...)
       console.log(beats)
       hexToBin(hash).split('').map(function(el, i) {
         if (beats[i]){
