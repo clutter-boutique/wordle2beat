@@ -223,8 +223,8 @@
     }
     // Restore the state before we start the drum loop
     restoreState();
-    document.querySelector('#start').addEventListener('clicked', (evt) => requestAnimationFrame(drumLoop))
-    // requestAnimationFrame(drumLoop);
+    // document.querySelector('#start').addEventListener('clicked', (evt) => requestAnimationFrame(drumLoop))
+    requestAnimationFrame(drumLoop);
 
     // adapted from https://paulbakaus.com/tutorials/html5/web-audio-on-ios/
     function enableIOSAudio() {
