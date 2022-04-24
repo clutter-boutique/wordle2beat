@@ -28,11 +28,11 @@ async function getTweetJson(tweetId, bearerToken){
 }
 
 function wordleToBeatHash(wordle){
-  let binary =  wordle.replaceAll("\n", "")
+  let binary =  wordle.replaceAll("\n", "00")
     .replaceAll('🟨', '1')
     .replaceAll('🟩', '1')
     .replaceAll('⬛', '0')
-  return binary
+  return binary + "00"
 }
 
 function getTweetId(ctx){

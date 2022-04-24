@@ -110,11 +110,16 @@ Inspired by https://www.youtube.com/watch?v=6O_92BTrUcA
     const sLen = sounds.length;
 
     function binToHex(bin) {
-      return parseInt(bin, 2).toString(16)
+      let padded = ""
+      for (let f of bin.match(/.{1,5}/g)){padded = `${padded}${f}00`}
+      return parseInt(padded, 2).toString(16)
     }
 
     function hexToBin(hex) {
-      return parseInt(hex, 16).toString(2)
+      padded = parseInt(hex, 16).toString(2)
+      unpadded = ""
+      for (let f of padded.match(/.{1,8}/g)){unpadded = `${unpadded}${f.substr(0.6)}`}
+      return unpadded
     }
 
     // represent the hash as two 32-bit integers, in hex
