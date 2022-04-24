@@ -28,7 +28,7 @@ async function getTweetJson(tweetId, bearerToken){
 }
 
 function wordleToBeatHash(wordle){
-  let binary =  wordle.replace("\n", "")
+  let binary =  wordle.replaceAll("\n", "")
     .replaceAll('🟨', '1')
     .replaceAll('🟩', '1')
     .replaceAll('⬛', '0')
