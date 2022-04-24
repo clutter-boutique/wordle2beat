@@ -111,14 +111,14 @@ Inspired by https://www.youtube.com/watch?v=6O_92BTrUcA
 
     function binToHex(bin) {
       let padded = ""
-      for (let f of bin.match(/.{1,5}/g)){padded = `${padded}${f}00`}
+      for (let f of bin.match(/.{1,5}/g)){padded = `${padded}${f}000`}
       return parseInt(padded, 2).toString(16)
     }
 
     function hexToBin(hex) {
       padded = parseInt(hex, 16).toString(2)
       unpadded = ""
-      for (let f of padded.match(/.{1,8}/g)){unpadded = `${unpadded}${f.substr(0.6)}`}
+      for (let f of padded.match(/.{1,8}/g)){unpadded = `${unpadded}${f.substr(0,5)}`}
       return unpadded
     }
 
