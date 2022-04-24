@@ -1,15 +1,12 @@
 <!doctype html>
-<!--
-Beatboxer
-Inspired by https://www.youtube.com/watch?v=6O_92BTrUcA
--->
+<!-- Built using Beatboxer http://sig.gy/beatboxer -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="description" itemprop="description" content="Wordle To Beat converts your wordle score to a (most likely unlistenable) beat" />
-  <meta itemprop="name" content="Beatboxer" />
+  <meta itemprop="name" content="Wordle2Beat" />
   <meta itemprop="image" content="http://sig.gy/beatboxer/thumbnail.png" />
 
   <!-- Facebook Open Graph -->
@@ -18,7 +15,7 @@ Inspired by https://www.youtube.com/watch?v=6O_92BTrUcA
   <meta property="og:url" content="https://wordle2beat.pages.dev" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="http://sig.gy/beatboxer/thumbnail.png" />
-  <meta property="og:site_name" content="Beatboxer" />
+  <meta property="og:site_name" content="Wordle2Beat" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -28,7 +25,7 @@ Inspired by https://www.youtube.com/watch?v=6O_92BTrUcA
   <meta name="twitter:image:src" content="http://sig.gy/beatboxer/thumbnail.png" />
   <meta name="twitter:url" content="https://wordle2beat.pages.dev" />
 
-  <title>Beatboxer</title>
+  <title>Wordle To Beat</title>
 
   <link rel="canonical" href="https://wordle2beat.pages.dev/" />
 
@@ -76,7 +73,7 @@ Inspired by https://www.youtube.com/watch?v=6O_92BTrUcA
 </head>
 <body>
   <div id="grid"></div>
-
+  <button id="play">Play</button>
   <script>
     const GREEN = "🟩";
     const YELLOW = "🟨"
@@ -93,8 +90,8 @@ Inspired by https://www.youtube.com/watch?v=6O_92BTrUcA
       'sounds/snare_drum.wav',
       'sounds/low_tom.wav',
       'sounds/mid_tom.wav',
-      'sounds/cowbell.wav',
-      'sounds/hi_conga.wav'
+      'sounds/hand_clap.wav',
+      'sounds/maracas.wav'
     ];
 
     const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
@@ -225,7 +222,7 @@ Inspired by https://www.youtube.com/watch?v=6O_92BTrUcA
     }
     // Restore the state before we start the drum loop
     restoreState();
-    requestAnimationFrame(drumLoop);
+    // requestAnimationFrame(drumLoop);
 
     // adapted from https://paulbakaus.com/tutorials/html5/web-audio-on-ios/
     function enableIOSAudio() {
@@ -239,6 +236,8 @@ Inspired by https://www.youtube.com/watch?v=6O_92BTrUcA
       window.removeEventListener('touchend', enableIOSAudio, false);
     }
     window.addEventListener('touchend', enableIOSAudio, false);
+
+    document.querySelector('#start').addEventListener('clicked', (evt) => requestAnimationFrame(drumLoop))
   </script>
 </body>
 </html>
