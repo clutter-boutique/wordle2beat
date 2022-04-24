@@ -10,7 +10,7 @@ export async function onRequest(ctx) {
       let wordle = extractWordle(response)
       let bin = wordleToBeatHash(wordle)
       let hash = parseInt(bin, 2).toString(16)
-      return new Response(`${wordle}<pre>\n${bin}\n${hash}</pre>`)
+      return new Response(`${wordle}\n------------\n${bin}\n~~~~~~~~~~~\n${hash}`)
     } else {
       return new Response("No tweet with wordle found for id ", tweetId)
     }
