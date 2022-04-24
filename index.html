@@ -21,6 +21,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="Wordle2Beat" />
   <meta name="twitter:title" content="Wordle2Beat" />
+  <meta name="twitter:player" content="https://wordle2beat.pages.dev/#9088d8082888"/>
   <meta name="twitter:description" content="Wordle To Beat converts your wordle score to a (most likely unlistenable) beat" />
   <meta name="twitter:image:src" content="http://sig.gy/beatboxer/thumbnail.png" />
   <meta name="twitter:url" content="https://wordle2beat.pages.dev" />
@@ -222,6 +223,7 @@
     }
     // Restore the state before we start the drum loop
     restoreState();
+    document.querySelector('#start').addEventListener('clicked', (evt) => requestAnimationFrame(drumLoop))
     // requestAnimationFrame(drumLoop);
 
     // adapted from https://paulbakaus.com/tutorials/html5/web-audio-on-ios/
@@ -237,7 +239,6 @@
     }
     window.addEventListener('touchend', enableIOSAudio, false);
 
-    document.querySelector('#start').addEventListener('clicked', (evt) => requestAnimationFrame(drumLoop))
   </script>
 </body>
 </html>
