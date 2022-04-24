@@ -9,7 +9,7 @@ export async function onRequest(ctx) {
     if (Object.keys(response).includes('data')){
       let wordle = extractWordle(response)
       let hash = wordleToBeatHash(wordle)
-      return new Response(wordle + "\n" + hash)
+      return new Response(`${wordle}\n${hash}`)
     } else {
       return new Response("No tweet with wordle found for id ", tweetId)
     }
